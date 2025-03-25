@@ -33,6 +33,17 @@ function onScroll() {
   const contentGradient = document.querySelector('.scroll__gradient')
   const scrollBtn = document.querySelector('.scroll__button')
 
+  if (!modalHeader || !modalContent || !contentGradient || !scrollBtn) return // Prevent errors
+
+  function checkInnerScroll() {
+    if (modalContent.scrollHeight > modalContent.clientHeight) {
+      scrollBtn.style.display = 'block' // Show button if inner scroll exists
+    } else {
+      scrollBtn.style.display = 'none' // Hide button if no inner scroll
+      contentGradient.style.display = 'none' // Hide button if no inner scroll
+    }
+  }
+
   modalContent.addEventListener('scroll', () => {
     if (modalContent.scrollTop > 0) {
       modalHeader.classList.add('shadow')
@@ -44,6 +55,9 @@ function onScroll() {
       scrollBtn.style.opacity = 1
     }
   })
+
+  checkInnerScroll() // Run on page load
+  window.addEventListener('resize', checkInnerScroll) // Run on resize
 }
 
 onScroll()
