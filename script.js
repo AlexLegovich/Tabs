@@ -38,6 +38,7 @@ function onScroll() {
   function checkInnerScroll() {
     if (modalContent.scrollHeight > modalContent.clientHeight) {
       scrollBtn.style.display = 'block' // Show button if inner scroll exists
+      contentGradient.style.display = 'block'
     } else {
       scrollBtn.style.display = 'none' // Hide button if no inner scroll
       contentGradient.style.display = 'none' // Hide button if no inner scroll
